@@ -1,0 +1,61 @@
+<!doctype html>
+<html>
+<head>
+    <title>Create User</title>
+<script>
+
+    var express = require('express');
+    var mysql = require('./dbcon.js');
+    var bodyParser = require('body-parser');
+    var router = express.Router();
+
+    router.post('/', function(req, res){
+
+        console.log(req.body.homeworld)
+        console.log(req.body)
+
+        var mysql = req.app.get('mysql');
+
+
+
+
+ 
+
+</script>
+</head>
+
+<body>
+<form action="/create_user" method="post" onsubmit="submitUserForm();">
+    <fieldset>
+        <legend><b>Create User:</legend></b>
+        <label for="name"></label>
+        <label>
+            Username:
+            <input id="username" type="text" name="username" size="25" maxlength="255">
+        </label>
+        <br />
+        <label>
+            Password:
+            <input id="password" type="text" name="password" size="25" maxlength="255">
+        </label>
+        <br />
+        <label>
+            Age:
+            <input id="age" type="number" name="age" size="25" maxlength="255">
+        </label>
+        <br />
+        <label>
+            Gender:
+            <input type="radio" name="gender" value="male"> Male
+            <input type="radio" name="gender" value="female"> Female
+            <input type="radio" name="gender" value="other"> Other
+        </label>
+        <br />
+        <input type="submit" id="submitUser">
+    </fieldset>
+</form>
+</body>
+</html>
+
+
+
