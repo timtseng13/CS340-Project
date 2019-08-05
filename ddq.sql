@@ -76,6 +76,13 @@ UNLOCK TABLES;
 	SET 	user_info.Premium = :isPremium 
 	WHERE user_info.ID = :ID 
 	UNLOCK TABLES; 
--- Delete a post (must be user who posted it) 
+--delete a post 
+	DELETE FROM post 
+	WHERE post.title = :postTitle 
+	
+--delete a comment 
+	DELETE FROM post 
+	WHERE comments.id = :commentid
+	
 	
 	
