@@ -4,7 +4,56 @@
     <h1>Post Board</h1>
 </header>
 <body>
+	 <aside class="search-container">
+		<div>
+			<input type="checkbox" id="Username" name="Username">
+			<label for="Username">Username</label>
+		</div>
+		<div>
+			<input type="checkbox" id="Tags" name="Tags">
+			<label for="Username">Tags</label>
+		</div>
+		<div>
+			<input type="checkbox" id="Post Title" name="Post Title">
+			<label for="Username">Post Title</label>
+		</div>
+		
+		<form class = "text_box" id = "sign_up">
+			<input type="text" name="Username"><br>
+			<button id="filter-update-button" class="action-button">Update</button>
+		</aside>
 
+
+		
+	
+	<aside class = "posts">
+		<div class="image">
+		  <div class="image-contents">
+			<a href={{id}}><img src={{imgURL}} alt={{description}}></a>
+			<div class="image-info-container">
+			  <a href="#" class="image-title" id = "image-title">{{description}}</a>
+				<span class="image-date" id = "image-date">{{date}}</span>
+			  <div class="image-info-container-tags-dates">
+				<div class = "image-tags" id= "image-tags">
+					{{#each tags}}
+					<span class="image-tags">#{{this}}</span>
+					{{/each}}
+				</div>
+			  </div>
+			  <div id="image-comments">
+				Comments:
+				{{#each comments}}
+				  <div class="image-comment" id = 'image-comment'><i>"{{this}}"</i></div>
+				{{/each}}
+			  </div>
+			  <div id="add-comment">
+				<input type="text" name="add-comment-label" id="add-comment-input" class="comment-label" placeholder="Add a comment..">
+				<button id= "comment-button" class="action-button">Comment</button>
+			  </div>
+			</div>
+		  </div>
+		</div>
+	</aside> 
     This page will act as a 'home page' it will contain the latest posts and have a search bar and filter options as well the links needed to sign up or post<br />
    
 </body>
