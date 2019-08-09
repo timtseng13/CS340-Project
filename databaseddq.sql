@@ -74,6 +74,15 @@ CREATE TABLE likes(
 	FOREIGN KEY(`userID`) REFERENCES comments(`userID`)ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
 
+CREATE TABLE tag(
+	`tagid`		int(11) NOT NULL,
+	`name`		varchar(255) NOT NULL, 
+	`vidID`		int(11) NOT NULL, 
+	`picID`		int(11) NOT NULL,
+	PRIMARY KEY(`tagid`),
+	FOREIGN KEY(`vidID`) REFERENCES video(`vidID`) ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(`picID`) REFERENCES video(`picID`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8; 
 
 LOCK TABLES `user_info` WRITE;
 INSERT INTO `user_info`(`userName`, `joinDate`, `Male/Female`, `Age`) VALUES 
