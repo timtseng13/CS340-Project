@@ -1,0 +1,39 @@
+<html>
+<h1> Add/Search Movie </h1>
+<h3>Add Movie:</h3>
+<form id="movie" action="/movie" method="post">
+    Title: <input type="text" name="movie_title"><br />
+    Genre: <input type="text" name="movie_genre"><br />
+	Director: <input type="text" name="movie_director"><br />
+	Length: <input type="text" name="movie_length"><br />
+    <input type="submit" value="Add"><br />
+</form>	
+<br />
+<h3>Movie Data:</h3>
+<table id="movie_table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Director</th>
+			<th>Length</th>
+			<th>Delete</th>
+            <th>Edit</th
+        </tr>
+    </thead>
+    <tbody id="movie_table_body">
+
+        {{#data.movie}}
+        <tr>
+            <td id="id" style="display:none">{{id}}</td>
+            <td id="title">{{title}}</td>
+			<td id="director">{{director}}</td>
+            <td id="genre">{{genre}}</td>
+			<td id="length">{{length}}</td>
+            <td id="delete"> <input type="button" value="delete" onClick="delete_row(this)"/></td>
+            <td id="edit"> <input type="button" value="edit" onClick="edit_row(this)"/></td>
+        </tr>
+        {{/data.movie}}
+    </tbody>
+</table>
+</html>

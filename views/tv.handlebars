@@ -1,0 +1,39 @@
+<html>
+<h1> Add/Search TV Shows </h1>
+<h3>Add TV Show:</h3>
+<form id="tv" action="/tv" method="post">
+    Title: <input type="text" name="tv_title"><br />
+    Genre: <input type="text" name="tv_genre"><br />
+	Producer: <input type="text" name="tv_produer"><br />
+	Episode Count: <input type="text" name="tv_episode"><br />
+    <input type="submit" value="Add"><br />
+</form>	
+<br />
+<h3>TV Show Data:</h3>
+<table id="tv_table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Producerr</th>
+			<th>Episode Count</th>
+			<th>Delete</th>
+            <th>Edit</th
+        </tr>
+    </thead>
+    <tbody id="tv_table_body">
+
+        {{#data.tv}}
+        <tr>
+            <td id="id" style="display:none">{{id}}</td>
+            <td id="title">{{title}}</td>
+            <td id="genre">{{genre}}</td>
+			<td id="length">{{producer}}</td>
+			<td id="episode">{{episode}}</td>
+            <td id="delete"> <input type="button" value="delete" onClick="delete_row(this)"/></td>
+            <td id="edit"> <input type="button" value="edit" onClick="edit_row(this)"/></td>
+        </tr>
+        {{/data.tv}}
+    </tbody>
+</table>
+</html>
