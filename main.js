@@ -166,7 +166,7 @@ app.get('/game', function (req, res) {
 });
 
 // Routes for adding media into database
-app.post('/add_movie', function (req, res) {
+app.post('/movie', function (req, res) {
 
     console.log(req.body);
     var mysql = req.app.get('mysql');
@@ -186,13 +186,13 @@ app.post('/add_movie', function (req, res) {
 
         else {
 
-            res.render('movie')
+            res.redirect('/movie')
         }
     });
 
 });
 
-app.post('/add_music', function (req, res) {
+app.post('/music', function (req, res) {
 
     console.log(req.body);
     var mysql = req.app.get('mysql');
@@ -212,13 +212,13 @@ app.post('/add_music', function (req, res) {
 
         else {
 
-            console.log('Inserted!')
+            res.redirect('/music')
         }
     });
 
 });
 
-app.post('/add_tv', function (req, res) {
+app.post('/tv', function (req, res) {
 
     console.log(req.body);
     var mysql = req.app.get('mysql');
@@ -238,13 +238,13 @@ app.post('/add_tv', function (req, res) {
 
         else {
 
-            console.log('Inserted!')
+            res.redirect('/tv')
         }
     });
 
 });
 
-app.post('/add_game', function (req, res) {
+app.post('/game', function (req, res) {
 
     console.log(req.body);
     var mysql = req.app.get('mysql');
@@ -264,7 +264,7 @@ app.post('/add_game', function (req, res) {
 
         else {
 
-            console.log('Inserted!')
+            res.redirect('game')
         }
     });
 
