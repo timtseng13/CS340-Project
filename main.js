@@ -26,7 +26,7 @@ app.get('/movie', function (req, res) {
     mysql.pool.query('SELECT * FROM Movie', function (err, rows, fields) {
 
         if (err) {
-
+			console.log('here'); 
             next(err);
             return;
 
@@ -363,6 +363,36 @@ app.get('/filterGame', function (req, res) {
     });
 
 });
+
+function getMovie(res, mysql, contex, id, complete){
+	var sql = "SELECT movieID, movieTitle, Genre, director, run_Time FROM Movie WHERE movieID = ?";
+	var inserts = [id]; 
+	mysql.pool.query(sql, inserts, function(error, results, fields){
+		if(error){
+			res.write(JSON.stringify(error));
+			res.end();
+		}
+		contex.Movie = results[0]; 
+		complete();
+		});
+}
+
+
+app.get('/movie/:id', function(req, res){
+		callbackCount = 0;
+
+		var context = {};
+        context.jsscripts = ["updatemovie.js"];
+        var mysql = req.app.get('mysql');
+        getMovie(res, mysql, context, req.params.id, complete);
+		 function complete(){
+            callbackCount++;
+            if(callbackCount >= 1){
+                res.render('update', context);
+			}
+		}
+});
+
 
   
 app.listen(app.get('port'), function () {
