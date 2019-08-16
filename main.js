@@ -26,9 +26,9 @@ app.get('/movie', function (req, res) {
     mysql.pool.query('SELECT * FROM Movie', function (err, rows, fields) {
 
         if (err) {
-			console.log('here'); 
+
             next(err);
-            return;
+            
 
         }
 
@@ -65,7 +65,7 @@ app.get('/music', function (req, res) {
         if (err) {
 
             next(err);
-            return;
+            
 
         }
 
@@ -101,7 +101,7 @@ app.get('/tv', function (req, res) {
         if (err) {
 
             next(err);
-            return;
+            
 
         }
 
@@ -138,7 +138,7 @@ app.get('/game', function (req, res) {
         if (err) {
 
             next(err);
-            return;
+            
 
         }
 
@@ -180,7 +180,7 @@ app.post('/movie', function (req, res) {
 
             console.log(JSON.stringify(error))
             res.write(JSON.stringify(error));
-            res.end();
+            
 
         }
 
@@ -207,7 +207,7 @@ app.post('/music', function (req, res) {
 
             console.log(JSON.stringify(error))
             res.write(JSON.stringify(error));
-            res.end();
+            
 
         }
 
@@ -233,7 +233,7 @@ app.post('/tv', function (req, res) {
 
             console.log(JSON.stringify(error))
             res.write(JSON.stringify(error));
-            res.end();
+            
 
         }
 
@@ -259,7 +259,7 @@ app.post('/game', function (req, res) {
 
             console.log(JSON.stringify(error))
             res.write(JSON.stringify(error));
-            res.end();
+            
 
         }
 
@@ -283,7 +283,7 @@ app.get('/filterMovie', function (req, res) {
         if (error) {
 
             res.write(JSON.stringify(error));
-            res.end();
+          
 
         }
         console.log(results);
@@ -306,7 +306,7 @@ app.get('/filterMusic', function (req, res) {
         if (error) {
 
             res.write(JSON.stringify(error));
-            res.end();
+            
 
         }
         console.log(results);
@@ -364,37 +364,99 @@ app.get('/filterGame', function (req, res) {
 
 });
 
-function getMovie(res, mysql, contex, id, complete){
-	var sql = "SELECT movieID, movieTitle, Genre, director, run_Time FROM Movie WHERE movieID = ?";
-	var inserts = [id]; 
-	mysql.pool.query(sql, inserts, function(error, results, fields){
-		if(error){
-			res.write(JSON.stringify(error));
-			res.end();
-		}
-		contex.Movie = results[0]; 
-		complete();
-		});
-}
+// DELETE
+app.post('/delete_movie', function (req, res, next) {
+
+    console.log(req.body.delete);
+    mysql.pool.query("DELETE FROM Movie WHERE movieID=?", [req.body.delete], function (err, result) {
+
+        if (err) {
+
+            next(err);
+            
+
+        }
+
+        res.redirect('movie');
+
+    });
+
+});
+
+app.post('/delete_music', function (req, res, next) {
+
+    console.log(req.body.delete);
+    mysql.pool.query("DELETE FROM Music WHERE musicID=?", [req.body.delete], function (err, result) {
+
+        if (err) {
+
+            next(err);
 
 
-app.get('/movie/:id', function(req, res){
-		callbackCount = 0;
+        }
 
-		var context = {};
-        context.jsscripts = ["updatemovie.js"];
-        var mysql = req.app.get('mysql');
-        getMovie(res, mysql, context, req.params.id, complete);
-		 function complete(){
-            callbackCount++;
-            if(callbackCount >= 1){
-                res.render('update', context);
-			}
-		}
+        res.redirect('music');
+
+    });
+
+});
+
+app.post('/delete_tv', function (req, res, next) {
+
+    console.log(req.body.delete);
+    mysql.pool.query("DELETE FROM TV_show WHERE showID=?", [req.body.delete], function (err, result) {
+
+        if (err) {
+
+            next(err);
+
+
+        }
+
+        res.redirect('tv');
+
+    });
+
+});
+
+app.post('/delete_game', function (req, res, next) {
+
+    console.log(req.body.delete);
+    mysql.pool.query("DELETE FROM video_Game WHERE gameID=?", [req.body.delete], function (err, result) {
+
+        if (err) {
+
+            next(err);
+
+
+        }
+
+        res.redirect('game');
+
+    });
+
+});
+
+// EDIT
+app.post('/edit_movie', function (req, res, next) {
+
+    console.log(req.body.edit);
+
+    mysql.pool.query("UPDATE Movie SET movieTitle=?, Genre=?, director=?, run_TIME=? WHERE movieId=?", [req.body.movie_title, req.body.movie_genre, req.body.movie_director, req.body.movie_time, req.body.movie_id], function (err, result) {
+
+        if (err) {
+
+            next(err);
+
+        }
+
+    });
+
+    res.redirect('movie');
+
 });
 
 
-  
 app.listen(app.get('port'), function () {
     console.log('Express started on http://localhost:' + app.get('port') + '; press Ctrl-C to terminate.');
 });
