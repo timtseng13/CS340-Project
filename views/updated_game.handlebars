@@ -1,0 +1,42 @@
+<html>
+<h1> Add/Search Video Games </h1>
+<h3>Add Video Game:</h3>
+<form id="game" action="/game" method="post">
+    Title: <input type="text" name="game_title"><br />
+    Genre: <input type="text" name="game_genre"><br />
+	Studio: <input type="text" name="game_studio"><br />
+
+    <input type="submit" value="Add"><br />
+</form>	
+<br />
+<h3>Video Game Data:</h3>
+<form id="filter" action ="/filterGame" method="get">
+	Filter by keyword: <input type="text" name="keyword" name = "keyword" id="keyword">
+	<input type ="submit" value="Search">
+</form>
+<form id="reset" action ="/game" method="get">
+<input type ="submit" value="Reset">
+</form>
+<br />
+<table id="game_table">
+    <thead>
+        <tr>
+			<th>Game Id</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Studio</th>
+        </tr>
+    </thead>
+    <tbody id="game_table_body">
+
+        {{#each game}}
+        <tr>
+            <td id="id">{{gameID}}</td>
+            <td id="title">{{gameTitle}}</td>
+            <td id="genre">{{Genre}}</td>
+			<td id="studio">{{gameStudio}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+</html>

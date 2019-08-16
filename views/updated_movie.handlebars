@@ -1,0 +1,48 @@
+<html>
+<script>
+</script>
+<h1> Add/Search Movie </h1>
+<h3>Add Movie:</h3>
+<form id="movie" action="/movie" method="post">
+    Title: <input type="text" name="movie_title"><br />
+    Genre: <input type="text" name="movie_genre"><br />
+	Director: <input type="text" name="movie_director"><br />
+	Length: <input type="text" name="movie_time"><br />
+    <input type="submit" value="Add"><br />
+</form>	
+<br />
+<h3>Movie Data:</h3>
+<form id="filter" action ="/filterMovie" method="get">
+	Filter by keyword: <input type="text" name="keyword" name = "keyword" id="keyword">
+	<input type ="submit" value="Search">
+</form>
+<form id="reset" action ="/movie" method="get">
+<input type ="submit" value="Reset">
+</form>
+<br />
+<table id="movie_table">
+    <thead>
+        <tr>
+			<th> Movie Id</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Director</th>
+			<th>Length</th>
+			<th>Delete</th>
+            <th>Edit</th
+        </tr>
+    </thead>
+    <tbody id="movie_table_body">
+
+        {{#each movie}} 
+        <tr>
+            <td id="id" style="display:none">{{movieID}}</td>
+            <td id="title">{{movieTitle}}</td>
+			<td id="director">{{director}}</td>
+            <td id="genre">{{Genre}}</td>
+			<td id="length">{{run_TIME}}</td>
+        </tr>
+        {{/each}} 
+    </tbody>
+</table>
+</html>

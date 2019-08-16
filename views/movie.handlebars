@@ -1,0 +1,57 @@
+<html>
+<h1> Add/Search Movie </h1>
+<h3>Add Movie:</h3>
+<script src="/functions.js"> </script>
+<form id="movie" action="/movie" method="post">
+    Title: <input type="text" name="movie_title"><br />
+    Genre: <input type="text" name="movie_genre"><br />
+	Director: <input type="text" name="movie_director"><br />
+	Length: <input type="text" name="movie_time"><br />
+    <input type="submit" value="Add"><br />
+</form>	
+
+<h3>Edit Movie:</h3>
+<form id="edit_movie" action="/edit_movie" method = "post">
+	Id: <input type="text" name="movie_id"><br />
+	Title: <input type="text" name="movie_title"><br />
+	Genre: <input type="text" name="movie_genre"><br />
+	Director: <input type="text" name="movie_director"><br />
+	Length: <input type="text" name="movie_time"><br />
+	<input type="submit" value="Update" name="edit"><br />
+</form>	
+<br />
+<h3>Movie Data:</h3>
+<form id="filter" action ="/filterMovie" method="get">
+	Filter by keyword: <input type="text" name="keyword" name = "keyword" id="keyword">
+	<input type ="submit" value="Search">
+</form>
+<form id="delete" action ="/delete_movie" method="post">
+Delete: <input type="text" placeholder = "Enter Id #" name="delete" name = "delete" id="delete">
+<input type ="submit" value="Delete">
+<br />
+<table id="movie_table">
+    <thead>
+        <tr>
+			<th>MovieId</th>
+            <th>Title</th>
+            <th>Genre</th>
+            <th>Director</th>
+			<th>Length</th>
+        </tr>
+    </thead>
+    <tbody id="movie_table_body">
+
+        {{#data.movie}}
+        <tr>
+            <td id="id">{{id}}</td>
+            <td id="title">{{title}}</td>
+			<td id="director">{{director}}</td>
+            <td id="genre">{{genre}}</td>
+			<td id="length">{{length}}</td>
+        </tr>
+        {{/data.movie}}
+    </tbody>
+</table>
+<br />
+
+</html>
